@@ -215,7 +215,7 @@ async function updateAuthor(courseId) {
     //const course = await Course.findById(courseId)
 
     // udating the sub document directly in database
-    // const course = await Course.update({ _id: courseId }, {
+    // const cosurse = await Course.update({ _id: courseId }, {
     //     // updating
     //     $set: {
     //         // write name of the properties you want to update
