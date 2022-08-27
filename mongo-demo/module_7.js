@@ -668,6 +668,125 @@
 
 // // Lec 18 Updating a Document Update First
 
+// // loading mongoose object
+// const { connect } = require('mongoose')
+// const mongoose = require('mongoose') 
+
+// //connecting to the mongoDB database
+
+// // playground-> name of the database
+// // connect method returns promise
+// mongoose.connect('mongodb://localhost:27017/playground') // takes connection string
+//     .then(()=> console.log('connected to MongoDB......'))
+//     .catch(err => console.error('Could not connect to MongoDB'))
+
+// // defining the schema
+// const courseSchema = new mongoose.Schema({
+//     name: String,
+//     author: String,
+//     tags: [String],
+//     date: { type: Date, default: Date.now },
+//     isPulished: Boolean
+// })
+
+// // Making the model
+
+// // returns class
+// const Course = mongoose.model('Course', courseSchema)
+
+// async function createCourse() {
+//     const course = new Course({
+//         name: 'Angular Course',
+//         author: 'Mosh',
+//         tags: ['angular', 'frontend'],
+//         isPublished: true
+//     })
+
+//     // saving the document in the database****
+//     // it is asynchronous operation
+//     // this method returns a promise
+//     // when we save this course in mongoDb it wil assing this a id
+//     const result = await course.save()
+//     console.log(result) 
+// }
+
+
+// // querying a document***
+
+// async function getCourses() {
+
+//     // pagination
+//     const pageNumber = 2
+//     const pageSize = 10
+ 
+//     const courses = await Course
+//         .find({ author: 'Mosh' })
+//         .skip((pageNumber-1)*pageSize)
+//         .limit(pageSize)
+//         .sort({ name: 1 })
+//         .select({ name: 1, tags: 1 })
+//     console.log(courses)
+    
+// }
+
+
+// // Updating a mongodb Document
+
+// async function updateCourse(id) {
+//     // approach1 : Query first
+//     // findById()
+//     // Modify its properties
+//     // save()
+
+//     // Approach 2: Update first
+//     // Update Directly
+//     // Optinally: get the update document
+
+
+//     // // Approach 1
+//     // const course = await Course.findById(id)
+//     // if (!course) return
+//     // course.author = 'Another Author'
+
+//     // // Method 2
+//     // // course.set({
+//     // //     author: 'Another Author'
+//     // // })
+
+//     // const result = await course.save()
+//     // console.log(result)
+
+
+//     // Approach 2
+//     // update multiple document
+//     // const res = await Course.update({ _id: id }, {
+//     //     $set: {
+//     //         author: 'Mosh'
+//     //     }
+//     // })
+
+
+//     //findByIdAndUpdate
+//     const res = await Course.findByIdAndUpdate({ _id: id }, {
+//         $set: {
+//             author: 'Anurag'
+//         }
+//     }, {new: true}) // {nwe, true} used for display the update document}
+
+//     console.log(res)
+
+// }
+
+// updateCourse('63087d31201296696427b586')
+
+
+
+
+
+//---------------------------------------------------------------------------------
+
+// // Lec 19 Removing Documents
+
 // loading mongoose object
 const { connect } = require('mongoose')
 const mongoose = require('mongoose') 
@@ -732,7 +851,7 @@ async function getCourses() {
 
 // Updating a mongodb Document
 
-async function updateCourse(id) {
+// async function updateCourse(id) {
     // approach1 : Query first
     // findById()
     // Modify its properties
@@ -743,19 +862,50 @@ async function updateCourse(id) {
     // Optinally: get the update document
 
 
-    // Approach 1
-    const course = await Course.findById(id)
-    if (!course) return
-    course.author = 'Another Author'
+    // // Approach 1
+    // const course = await Course.findById(id)
+    // if (!course) return
+    // course.author = 'Another Author'
 
-    // Method 2
-    // course.set({
-    //     author: 'Another Author'
+    // // Method 2
+    // // course.set({
+    // //     author: 'Another Author'
+    // // })
+
+    // const result = await course.save()
+    // console.log(result)
+
+
+    // Approach 2
+    // update multiple document
+    // const res = await Course.update({ _id: id }, {
+    //     $set: {
+    //         author: 'Mosh'
+    //     }
     // })
 
-    const result = await course.save()
-    console.log(result)
 
+//     //findByIdAndUpdate
+//     const res = await Course.findByIdAndUpdate({ _id: id }, {
+//         $set: {
+//             author: 'Anurag'
+//         }
+//     }, {new: true}) // {nwe, true} used for display the update document}
+
+//     console.log(res)
+
+// }
+
+// updateCourse('63087d31201296696427b586')
+
+
+// Removing Course
+
+async function removeCourse(id) {
+    const result = await Course.deleteOne({ _id: id })
+    // const result = await Course.deleteMany{_id: id}
+    // getting the document that are deleted
+    const course = await Course.findByIdAndRemove(id)
+    console.log(course)
 }
-
-updateCourse('63087d31201296696427b586')
+removeCourse('63087d31201296696427b586')
