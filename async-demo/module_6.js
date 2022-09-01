@@ -1,14 +1,11 @@
 // Module 6. Asynchronous JavaScript
 
-const { copyFileSync } = require("fs")
-const { resolve } = require("path")
-const { reject } = require("underscore")
-
 // // Lec 1 Synchronous vs Asynchronous Code
 
 // console.log('Before')
 
 // // simulating call to database that take 2 sec
+
 // setTimeout(() => { // this is asysnchronous or non blockin fuction
 //      console.log('Reading a user from a database....')
 // }, 2000)
@@ -47,12 +44,12 @@ const { reject } = require("underscore")
 // // settting a callback fuction
 
 // getUser(1, (user)=>{
-//     console.log('user', user)
+//     console.log(user)
     
 //     // Get the repositories
 //     // value + name of object in which you want to store callback's result
 //     getRepositories(user.gitHubUsername, (repos) => {
-//         console.log('repos', repos)
+//         console.log(repos)
 //     })
 
 // })
@@ -70,7 +67,7 @@ const { reject } = require("underscore")
 // // getting git hub Repo
 // function getRepositories(username, callback) {
 //     setTimeout(() => { // this is asysnchronous or non blockin fuction
-//         console.log('Reading a user from a database....')
+//         console.log('Getting Repos....')
 //         callback(['repo1', 'repo2', 'repo2'])
 //     }, 2000)
     
@@ -88,13 +85,9 @@ const { reject } = require("underscore")
 // // Asynchornous version of code which contais lot of nested fuctions like nested sql queries
 // getUser(1, (user)=>{
 //     console.log('user', user)
-    
-//     // Get the repositories
-//     // value + name of object in which you want to store callback's result
 //     getRepositories(user.gitHubUsername, (repos) => {
 //         console.log('repos', repos)
 //     })
-
 // })
 
 // console.log('After')
@@ -228,19 +221,10 @@ const { reject } = require("underscore")
 
 // console.log('Before')
 
-// // getUser(1, (user)=>{
-// //     console.log('user', user)
-// //     getRepositories(user.gitHubUsername, (repos) => {
-// //         getCommits(repos[0], (commits) => {
-// //             console.log(commits)
-// //         })
-// //     })
-// // })
-
-
 // // consuiming promise***
 // // const p = getUser(1)
 // // p.then (or)
+
 // getUser(1)
 //     .then(user => getRepositories(user.gitHubUsername))
 //     .then(repos => getCommits(repos[0]))
@@ -285,68 +269,68 @@ const { reject } = require("underscore")
 
 
 //------------------------------------------------------------
-//Lec 11 Async and Await
+// //Lec 11 Async and Await
 
-console.log('Before')
+// console.log('Before')
 
-// // consuming promise
-// getUser(1)
-//     .then(user => getRepositories(user.gitHubUsername))
-//     .then(repos => getCommits(repos[0]))
-//     .then(commits => console.log(commits))
-
-
-// async and await
-async function displayCommits() {
-    try {
-        const user = await getUser(1)
-        const repos = await getRepositories(user.gitHubUsername)
-        const commits = await getCommits(repos[0])
-        console.log(commits)
-    }
-    catch (err) {
-        console.log('Error', err.message)
-    }
-}
-displayCommits()
+// // // consuming promise
+// // getUser(1)
+// //     .then(user => getRepositories(user.gitHubUsername))
+// //     .then(repos => getCommits(repos[0]))
+// //     .then(commits => console.log(commits))
 
 
+// // async and await
+// async function displayCommits() {
+//     try {
+//         const user = await getUser(1)
+//         const repos = await getRepositories(user.gitHubUsername)
+//         const commits = await getCommits(repos[0])
+//         console.log(commits)
+//     }
+//     catch (err) {
+//         console.log('Error', err.message)
+//     }
+// }
+// displayCommits()
 
-console.log('After')
 
-function getUser(id) {
-    // returning a promise***
-    return new Promise((resolve, reject) => {
-        // kick off some async work
-        setTimeout(() => { // this is asysnchronous or non blockin fuction
-            console.log('Reading a user from a database....')
-            //resolve({ id: id, gitHubUsername: 'mosh' })
-            reject(new Error('Error happens'))
-        }, 2000)
-    })
+
+// console.log('After')
+
+// function getUser(id) {
+//     // returning a promise***
+//     return new Promise((resolve, reject) => {
+//         // kick off some async work
+//         setTimeout(() => { // this is asysnchronous or non blockin fuction
+//             console.log('Reading a user from a database....')
+//             //resolve({ id: id, gitHubUsername: 'mosh' })
+//             reject(new Error('Error happens'))
+//         }, 2000)
+//     })
     
-}
+// }
 
-// getting git hub Repo
-function getRepositories(username) {
-    // setting a promise
-    return new Promise((resolve, reject) => {
-        // some async work....
-        setTimeout(() => { 
-            console.log('Reading a user from a database....')
-            resolve(['repo1', 'repo2', 'repo2'])
-        }, 2000)
-    }) 
-}
-// getting commits
-function getCommits(repo) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            console.log('Calling Github APi')
-            resolve(['commit'])
-        }, 2000)
-    })
-}
+// // getting git hub Repo
+// function getRepositories(username) {
+//     // setting a promise
+//     return new Promise((resolve, reject) => {
+//         // some async work....
+//         setTimeout(() => { 
+//             console.log('Reading a user from a database....')
+//             resolve(['repo1', 'repo2', 'repo2'])
+//         }, 2000)
+//     }) 
+// }
+// // getting commits
+// function getCommits(repo) {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             console.log('Calling Github APi')
+//             resolve(['commit'])
+//         }, 2000)
+//     })
+// }
 
 
 

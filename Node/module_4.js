@@ -315,62 +315,6 @@
 //     { id: 2, name: 'course_2' },
 //     { id: 3, name: 'course_3' }
 // ]
-// //Get request
-// //-------------------------------------
-// // end point for the home page
-// app.get('/', (req, res) => {
-//     res.send('this is home page')
-// })
-
-// // endpoint for accessesing courses
-// app.get('/api/courses', (req, res) => {
-//     res.send(courses)
-// })
- 
-// // endpoint for accessing specific course
-// app.get('/api/courses/:id', (req, res) => {
-//     const course = courses.find(c =>c.id === parseInt(req.params.id))
-//     if (!course) return res.status(404).send('The course with the given ID was not FOUND ') //404 for object not found
-//     res.send(course)
-// })
-
-// // Now Put request (update)***
-// //----------------------------------
-
-// app.put('/api/courses/:id', (req, res) => {
-//     // Look up the course
-//     // If not existin, return 404
-//     const course = courses.find(c=> c.id=== parseInt(req.params.id))
-//     if (!course) return res.status(404).send('404 Bad Request')
-    
-//     // Validate
-//     //---------------
-//     // if invalid, return 400 - bad reques
-
-
-//     //const result = validateCourse(req.body)
-//     // object destructoring
-//     const { error } = validateCourse(req.body)
-
-//     if (error) {
-//         return res.status(400).send(error.details[0].message)
-//     }
-
-//     // update course
-//     // return the updated  course
-//     course.name = req.body.name
-//     res.send(course)
-
-// })
-
-// // defining a validation fuction
-// function validateCourse(course) {
-//     const schema = Joi.object({
-//         name: Joi.string().min(3).required()
-//     })
-//     return schema.validate(course)
-// }
-
 
 // // delete request**
 // //----------------------------

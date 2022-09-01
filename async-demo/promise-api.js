@@ -1,7 +1,6 @@
-// Mod 6 // Lec 9 Creating a setted Promise
+// Mod 6
 
-const { resolve } = require("path");
-const { reject } = require("underscore");
+// Lec 9 Creating a setted Promise
 
 // already resolved promise
 // const p =Promise.resolve({ id: 1 })
@@ -23,7 +22,7 @@ const { reject } = require("underscore");
 //     }, 2000)
 // })
 
-// when promise got reected
+// when promise got rejected
 const p1 = new Promise((resolve, reject) => {
     setTimeout(() => {
         console.log('Async operation 1....')

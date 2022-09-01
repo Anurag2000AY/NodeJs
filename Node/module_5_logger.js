@@ -1,6 +1,8 @@
-function log(req, res, next) {
-    console.log('Logging.......')
-    next() // to terminate the request response cycle so our request will not hang
-}
+// Creating custom Middleware in Sperate folder
 
-module.exports = log
+// function log(req, res, next) {
+//     console.log('Logging.......')
+//     next() // to terminate the request response cycle so our request will not hang
+// }
+
+// module.exports = log

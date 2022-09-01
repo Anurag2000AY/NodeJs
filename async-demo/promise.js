@@ -1,4 +1,4 @@
-// Lec 6 Promised
+// Lec 6 Promises
 
 // creating a promise object
 const p = new Promise((resolve, reject) => {
